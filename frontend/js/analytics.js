@@ -1,14 +1,8 @@
-/* ============================================================
-   analytics.js — Analytics page charts  (Stage 2: localStorage sync)
-   ============================================================
-   STAGE 2 CHANGE: Now uses loadApps() (same localStorage source
-   as the Applications page) instead of hardcoded SAMPLE_APPS.
-   ============================================================ */
+
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-    // ── LOAD APPS (Stage 6: API) ─────────────────────────────
-    let apps = [];
+        let apps = [];
     try {
         const res = await apiFetch('/applications');
         if (res) apps = res.data;

@@ -1,11 +1,4 @@
-/* ============================================================
-   middleware/auth.js — Route Protector Middleware
-   ============================================================
-   This middleware checks if the request has a valid JWT token.
-   If it does, it extracts the user ID and attaches the user
-   to the `req` object for the controller to use.
-   If not, it rejects the request with a 401 Unauthorized.
-   ============================================================ */
+
 
 const jwt = require('jsonwebtoken');
 const User = require('../models/User');

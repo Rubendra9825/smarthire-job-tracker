@@ -1,23 +1,4 @@
-/* ============================================================
-   SmartHire — Main Stylesheet
-   ============================================================
-   This file contains ALL custom styles for SmartHire.
 
-   TABLE OF CONTENTS:
-   1.  CSS Variables (Design Tokens)
-   2.  Global Resets & Base
-   3.  Sidebar Layout
-   4.  Top Navbar
-   5.  Dashboard Cards
-   6.  Status Badges
-   7.  Table Styles
-   8.  Application Cards
-   9.  Form Styles
-   10. Charts & Analytics
-   11. Resume Matcher
-   12. Buttons & Interactions
-   13. Responsive (Mobile / Tablet)
-   ============================================================ */
 
 /* ── 1. CSS VARIABLES ─────────────────────────────────────── */
 :root {

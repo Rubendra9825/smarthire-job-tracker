@@ -1,17 +1,4 @@
-/* ============================================================
-   seeder.js — Populate / clear the MongoDB database
-   ============================================================
-   Run this script once after setting up MongoDB to populate
-   the database with the same 10 sample applications we had
-   in the frontend.
 
-   Usage:
-     node seeder.js --import   ← adds 10 sample apps to DB
-     node seeder.js --delete   ← clears all apps from DB
-
-   This script is NOT part of the API server — it's a one-off
-   utility script you run from the terminal.
-   ============================================================ */
 
 require('dotenv').config();
 const mongoose = require('mongoose');
@@ -20,7 +7,6 @@ const Application = require('./models/Application');
 
 // ── SAMPLE DATA ───────────────────────────────────────────────
 // Same 10 applications as the frontend SAMPLE_APPS.
-// After Stage 6, the frontend will fetch these from the API
 // instead of using its own copy.
 
 const sampleApps = [

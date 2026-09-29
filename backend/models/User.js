@@ -1,6 +1,4 @@
-/* ============================================================
-   models/User.js — Mongoose Schema for Users
-   ============================================================ */
+
 
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
@@ -27,8 +25,7 @@ const userSchema = new mongoose.Schema(
             minlength: [6, 'Password must be at least 6 characters'],
             select: false, // Don't return the password when querying users
         },
-        // Optional profile fields for Stage 7/8
-        bio: { type: String, default: '' },
+                bio: { type: String, default: '' },
         skills: { type: [String], default: [] },
     },
     {

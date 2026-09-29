@@ -1,17 +1,9 @@
-/* ============================================================
-   server.js — Express application entry point  (Stage 4 update)
-   ============================================================
-   STAGE 4 CHANGE: We now call connectDB() before app.listen().
-   This connects to MongoDB Atlas (or local Mongo) first, and
-   only starts the HTTP server once the DB is ready.
-   ============================================================ */
+
 
 require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
-const connectDB = require('./config/db');      // ← Stage 4: import DB connector
-
-const applicationRoutes = require('./routes/applications');
+const connectDB = require('./config/db');      const applicationRoutes = require('./routes/applications');
 const errorHandler = require('./middleware/errorHandler');
 
 const app = express();
@@ -23,9 +15,7 @@ app.use(cors());
 
 // ── ROUTES ───────────────────────────────────────────────────
 app.use('/api/applications', applicationRoutes);
-app.use('/api/auth', require('./routes/auth')); // Stage 5 additions
-
-app.get('/api/health', (req, res) => {
+app.use('/api/auth', require('./routes/auth')); app.get('/api/health', (req, res) => {
     res.json({
         status: 'ok',
         message: 'SmartHire API is running 🚀',

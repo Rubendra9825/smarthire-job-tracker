@@ -1,6 +1,4 @@
-/* ============================================================
-   controllers/authController.js — Authentication Logic
-   ============================================================ */
+
 
 const User = require('../models/User');
 

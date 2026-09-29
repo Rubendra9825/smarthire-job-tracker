@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SmartHire - Interview Cheat Sheet</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+            background: #fff;
+        }
+
+        h1 {
+            color: #2563eb;
+            border-bottom: 2px solid #e5e7eb;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        h2 {
+            color: #1e40af;
+            margin-top: 30px;
+            border-bottom: 1px solid #e5e7eb;
+            padding-bottom: 5px;
+        }
+
+        h3 {
+            color: #374151;
+            margin-top: 25px;
+        }
+
+        p,
+        li {
+            font-size: 15px;
+        }
+
+        ul {
+            padding-left: 20px;
+        }
+
+        .highlight {
+            background-color: #f3f4f6;
+            padding: 15px;
+            border-left: 4px solid #3b82f6;
+            border-radius: 4px;
+            margin: 20px 0;
+        }
+
+        strong {
+            color: #111;
+        }
+
+        @media print {
+            body {
+                padding: 0;
+                margin: 0;
+            }
+
+            @page {
+                margin: 1.5cm;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>SmartHire – Interview Cheat Sheet</h1>
+
+    <div class="highlight">
+        <strong>The 30-Second Elevator Pitch:</strong><br>
+        "SmartHire is a full-stack, secure job application tracking system. It allows users to create accounts, log in
+        securely, and manage their job hunt by performing CRUD (Create, Read, Update, Delete) operations on their job
+        applications. It features a custom-built responsive UI and tracks application statuses securely."
+    </div>
+
+    <h2>1. The Tech Stack</h2>
+    <p>This project is essentially a modified <strong>MERN</strong> stack (using Vanilla JS instead of React to prove
+        fundamental knowledge).</p>
+    <ul>
+        <li><strong>Frontend (Client):</strong> HTML5, Custom CSS3 (Glassmorphism design), and Vanilla JavaScript
+            (ES6+).</li>
+        <li><strong>Backend (Server):</strong> Node.js and Express.js.</li>
+        <li><strong>Database:</strong> MongoDB (hosted on Atlas) using Mongoose as the ODM.</li>
+        <li><strong>Security/Auth:</strong> JSON Web Tokens (JWT) for sessions, and <code>bcrypt.js</code> for password
+            encryption.</li>
+    </ul>
+
+    <h2>2. How the Architecture Works</h2>
+    <p>If someone asks: <em>"Explain the flow of data in your app."</em></p>
+    <p><strong>Your Answer:</strong></p>
+    <p>
+        "The app relies on a <strong>Client-Server RESTful Architecture</strong>. <br>
+        1. The <strong>Frontend</strong> consists of static HTML/JS files. When a user clicks 'Save Application', the
+        Frontend JavaScript uses the <code>fetch()</code> API to send an asynchronous HTTP POST request down to the
+        backend.<br>
+        2. The <strong>Backend</strong> (Express on Node.js) receives this request. It routes the request to a specific
+        Controller function.<br>
+        3. The Controller uses <strong>Mongoose</strong> to validate the data and save it directly into the
+        <strong>MongoDB</strong> cloud database. <br>
+        4. The database replies with success, the backend sends a JSON response back to the frontend, and the frontend
+        dynamically updates the UI to show the new application without reloading the page."
+    </p>
+
+    <h2>3. Technical Deep Dives (Common Interview Questions)</h2>
+
+    <h3>Q: How did you handle user authentication and security?</h3>
+    <p><strong>Your Answer:</strong> "Authentication is completely stateless using <strong>JWT (JSON Web
+            Tokens)</strong>. When a user signs up, I hash their password using <code>bcrypt</code> so the raw password
+        is never saved in the DB. When they log in, the server generates a signed JWT and sends it to the frontend. The
+        frontend saves this token in <code>localStorage</code>. For every future request, the frontend attaches that
+        token in the <code>Authorization</code> header. The backend has custom middleware that catches every request,
+        verifies the token's signature, and ensures the user only sees their own private data."</p>
+
+    <h3>Q: Why did you use Vanilla JavaScript instead of React or Vue?</h3>
+    <p><strong>Your Answer:</strong> "I purposefully used Vanilla JS to strengthen my fundamental understanding of the
+        DOM (Document Object Model) and browser APIs. I built my own state management, my own custom asynchronous
+        `apiFetch` wrapper, and handled custom UI rendering manually. Taking this route ensures I actually know how the
+        web works under the hood rather than just relying on framework magic."</p>
+
+    <h3>Q: How is your backend codebase structured?</h3>
+    <p><strong>Your Answer:</strong> "It strictly follows the <strong>MVC (Model-View-Controller)</strong> design
+        pattern to keep the code organized and scalable:<br>
+        - <strong>Models:</strong> Define the MongoDB shape/schema (User schema, Application schema).<br>
+        - <strong>Routes:</strong> Define the URL endpoints (e.g., <code>POST /api/applications</code>).<br>
+        - <strong>Controllers:</strong> Contain the actual business logic."</p>
+
+    <h3>Q: Are there any challenges you faced and overcame?</h3>
+    <p><strong>Your Answer:</strong> "One major challenge was network reliability and local DNS firewall blocks
+        preventing connection to MongoDB Atlas. To ensure I could continue developing and testing the front-end
+        regardless of my internet connection, I implemented a robust local testing script using
+        <code>mongodb-memory-server</code> which spins up a mock database instantly in-memory, ensuring development is
+        never blocked."</p>
+
+    <h2>4. Quick Mental Checklist</h2>
+    <p>Before you talk about the project, remember these keywords:</p>
+    <ul>
+        <li><strong>CRUD:</strong> Create, Read, Update, Delete (You implemented all 4).</li>
+        <li><strong>Stateless Auth:</strong> Because JWTs don't require the server to store sessions locally.</li>
+        <li><strong>Client-Side Rendering (CSR):</strong> Because your JS injects HTML into the page dynamically.</li>
+        <li><strong>RESTful API:</strong> Because your backend uses standard GET, POST, PUT, DELETE endpoints.</li>
+    </ul>
+
+</body>
+
+</html>

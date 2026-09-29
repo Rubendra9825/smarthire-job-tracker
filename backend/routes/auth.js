@@ -1,6 +1,4 @@
-/* ============================================================
-   routes/auth.js — Authentication Routes
-   ============================================================ */
+
 
 const express = require('express');
 const router = express.Router();

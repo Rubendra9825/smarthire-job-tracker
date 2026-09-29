@@ -1,11 +1,4 @@
-/* ============================================================
-   profile.js — Profile page logic
-   ============================================================
-   Handles:
-   - Loading and displaying user profile from localStorage
-   - Saving profile changes
-   - Skills tag management (add/remove)
-   ============================================================ */
+
 
 document.addEventListener('DOMContentLoaded', () => {
 

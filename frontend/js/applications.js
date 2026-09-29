@@ -17,8 +17,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
   let apps = [];
 
-  // Stage 6: Load from API
-  async function fetchApps() {
+    async function fetchApps() {
     try {
       const res = await apiFetch('/applications');
       if (res) {
@@ -311,8 +310,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   // ── DELETE ────────────────────────────────────────────────
-  // Stage 2: now uses showConfirm() from main.js instead of
-  // the ugly browser confirm() dialog.
+    // the ugly browser confirm() dialog.
 
   window.deleteApp = function (id) {
     const app = apps.find(a => a._id === id);

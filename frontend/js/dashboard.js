@@ -1,17 +1,8 @@
-/* ============================================================
-   dashboard.js — Dashboard page logic  (Stage 2: localStorage sync)
-   ============================================================
-   STAGE 2 CHANGE: We now call loadApps() to get data from
-   localStorage instead of reading SAMPLE_APPS directly.
 
-   This means if you add/edit/delete apps on the Applications
-   page, the dashboard will reflect those changes too.
-   ============================================================ */
 
 document.addEventListener('DOMContentLoaded', async () => {
 
-  // ── LOAD APPS (Stage 6: API Fetch) ───────────────────────
-  let apps = [];
+    let apps = [];
   try {
     const res = await apiFetch('/applications');
     if (res) apps = res.data;

@@ -1,26 +1,11 @@
-/* ============================================================
-   models/Application.js — Mongoose Schema  (Stage 4)
-   ============================================================
-   A Mongoose "schema" is like a blueprint for a document
-   stored in MongoDB. It defines:
-     - What fields exist (company, jobTitle, status, etc.)
-     - What type each field is (String, Date, Boolean)
-     - Which fields are required vs optional
-     - Default values
 
-   In Stage 3 we don't use this yet — the controller uses an
-   in-memory array. In Stage 4, the controller will call
-   Application.find(), Application.create(), etc. which
-   automatically saves/reads from the MongoDB database.
-   ============================================================ */
 
 const mongoose = require('mongoose');
 
 const applicationSchema = new mongoose.Schema(
     {
         // Who is the user that created this application?
-        // stage 5 (JWT auth): this will link to the User model.
-        user: {
+                user: {
             type: mongoose.Schema.Types.ObjectId,
             ref: 'User',
             required: true,

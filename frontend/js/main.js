@@ -43,7 +43,6 @@ function setActiveNav() {
 setActiveNav();
 
 // ── AUTH GUARD ───────────────────────────────────────────────
-// Stage 5 (JWT): Check localStorage for real token.
 function getToken() {
   return localStorage.getItem('sh_token');
 }

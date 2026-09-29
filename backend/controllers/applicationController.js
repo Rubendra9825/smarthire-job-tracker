@@ -1,21 +1,4 @@
-/* ============================================================
-   controllers/applicationController.js  (Stage 4: Mongoose)
-   ============================================================
-   STAGE 4 CHANGE: Removed the in-memory `apps` array entirely.
-   Every function now uses async/await with Mongoose methods:
 
-   | Stage 3 (in-memory)          | Stage 4 (Mongoose)                    |
-   |------------------------------|---------------------------------------|
-   | apps array in memory         | MongoDB "applications" collection     |
-   | apps.filter(...)             | Application.find({ status })          |
-   | apps.find(a => a.id === id)  | Application.findById(id)              |
-   | apps.push(newApp)            | Application.create(data)              |
-   | apps[idx] = {...}            | Application.findByIdAndUpdate(id,...) |
-   | apps.splice(idx, 1)          | Application.findByIdAndDelete(id)     |
-
-   Note: MongoDB auto-generates a unique `_id` for each document.
-   This replaces the manual `nextId` counter we had in Stage 3.
-   ============================================================ */
 
 const Application = require('../models/Application');
 
@@ -25,8 +8,7 @@ const Application = require('../models/Application');
 
 const getAllApplications = async (req, res, next) => {
     try {
-        // Stage 5: Only get applications belonging to logged in user
-        const filter = { user: req.user.id };
+                const filter = { user: req.user.id };
 
         if (req.query.status && req.query.status !== 'All') {
             filter.status = req.query.status;

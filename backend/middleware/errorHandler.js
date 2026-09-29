@@ -1,17 +1,4 @@
-/* ============================================================
-   middleware/errorHandler.js — Central error handler
-   ============================================================
-   HOW MIDDLEWARE WORKS (for beginners):
-   Express middleware is a function that runs BETWEEN receiving
-   a request and sending a response. It receives (req, res, next).
 
-   An ERROR-handling middleware specifically has 4 parameters:
-   (err, req, res, next). Express knows it's for errors because
-   of the 4 parameters.
-
-   Any route can call next(err) to skip to this handler.
-   This way we don't repeat try/catch in every single route.
-   ============================================================ */
 
 const errorHandler = (err, req, res, next) => {
     // Log the full error to the terminal (for debugging)

@@ -1,20 +1,8 @@
-/* ============================================================
-   resume-matcher.js — AI Resume Matcher (Stage 1 prototype)
-   ============================================================
-   In Stage 1, this shows a SIMULATED match result.
-   In Stage 8, this will call a real Python/AI API.
 
-   How it works (simulated):
-   - Extracts "words" from both resume and job description
-   - Checks which job keywords appear in the resume
-   - Calculates a simple match percentage
-   - Shows matched skills, missing skills, and suggestions
-   ============================================================ */
 
 document.addEventListener('DOMContentLoaded', () => {
 
-    // Common tech keywords to look for (expanded in Stage 8 with NLP)
-    const KNOWN_SKILLS = [
+        const KNOWN_SKILLS = [
         'javascript', 'python', 'java', 'c++', 'c#', 'typescript', 'go', 'rust', 'kotlin', 'swift',
         'react', 'angular', 'vue', 'nextjs', 'express', 'django', 'flask', 'fastapi', 'spring',
         'node', 'nodejs', 'mongodb', 'postgresql', 'mysql', 'redis', 'elasticsearch',

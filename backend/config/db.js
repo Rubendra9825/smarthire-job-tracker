@@ -1,12 +1,4 @@
-/* ============================================================
-   config/db.js — MongoDB connection  (Stage 4)
-   ============================================================
-   This file is a STUB in Stage 3 — it does nothing yet.
-   In Stage 4 we will:
-     1. Install mongoose: npm install mongoose
-     2. Call connectDB() from server.js before starting the server
-     3. Replace the in-memory array in controllers with DB queries
-   ============================================================ */
+
 
 const mongoose = require('mongoose');
 

@@ -1,9 +1,4 @@
-/* ============================================================
-   auth.js — Frontend Auth Logic (Stage 6)
-   ============================================================
-   This file handles logging in and registering via the API.
-   It uses the apiFetch wrapper from main.js.
-   ============================================================ */
+
 
 const loginForm = document.getElementById('loginForm');
 if (loginForm) {
