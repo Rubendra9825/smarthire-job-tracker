@@ -9,15 +9,15 @@
 | Stage | Topic | Status |
 |-------|-------|--------|
 | Stage 1 | Frontend UI (HTML + CSS + JS) | ✅ Complete |
-| Stage 2 | Interactive JS (localStorage) | 🔲 Coming next |
-| Stage 3 | Node.js + Express Backend | 🔲 Upcoming |
-| Stage 4 | MongoDB Integration | 🔲 Upcoming |
-| Stage 5 | JWT Authentication | 🔲 Upcoming |
-| Stage 6 | Frontend ↔ Backend | 🔲 Upcoming |
-| Stage 7 | Analytics & Charts | 🔲 Upcoming |
-| Stage 8 | AI Resume Matcher | 🔲 Upcoming |
-| Stage 9 | Testing & Bug Fixes | 🔲 Upcoming |
-| Stage 10 | Deployment | 🔲 Upcoming |
+| Stage 2 | Interactive JS (localStorage) | ✅ Complete |
+| Stage 3 | Node.js + Express Backend     | ✅ Complete |
+| Stage 4 | MongoDB Integration           | ✅ Complete |
+| Stage 5 | JWT Authentication            | ✅ Complete |
+| Stage 6 | Frontend ↔ Backend            | ✅ Complete |
+| Stage 7 | Analytics & Charts            | ⏳ Next Steps |
+| Stage 8 | AI Resume Matcher             | ⏳ Next Steps |
+| Stage 9 | Testing & Bug Fixes           | ⬜ Upcoming |
+| Stage 10| Deployment                    | ⬜ Upcoming |
 
 ---
 
