@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Application Detail — SmartHire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon"><i class="bi bi-briefcase-fill"></i></div>
+            <span class="brand-name">SmartHire</span>
+        </div>
+        <div class="sidebar-label">Menu</div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+            <a href="applications.html"><i class="bi bi-card-list"></i> Applications</a>
+            <a href="analytics.html"><i class="bi bi-bar-chart-line"></i> Analytics</a>
+            <a href="resume-matcher.html"><i class="bi bi-robot"></i> Resume Matcher</a>
+        </nav>
+        <div class="sidebar-label">Account</div>
+        <nav class="sidebar-nav">
+            <a href="profile.html"><i class="bi bi-person-circle"></i> Profile</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html"><i class="bi bi-box-arrow-left"></i> Log Out</a>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
+                <!-- Breadcrumb -->
+                <nav aria-label="breadcrumb" style="font-size:14px;color:var(--color-muted);">
+                    <a href="applications.html" style="color:var(--color-muted);">Applications</a>
+                    <span style="margin:0 8px;">/</span>
+                    <span id="breadcrumbTitle" style="color:var(--color-text);font-weight:500;">Detail</span>
+                </nav>
+            </div>
+            <div class="topbar-right">
+                <button class="user-btn">
+                    <div class="user-avatar" id="topbarUserAvatar">AJ</div>
+                    <span id="topbarUserName">Alex Johnson</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="page-content">
+
+            <!-- Back button -->
+            <div style="margin-bottom:16px;">
+                <a href="applications.html" class="btn-secondary" style="display:inline-flex;">
+                    <i class="bi bi-arrow-left"></i> Back to Applications
+                </a>
+            </div>
+
+            <!-- ── COMPANY HEADER CARD ──────────────────────────────── -->
+            <div class="detail-header">
+                <div class="detail-company">
+                    <div class="logo" id="detailLogo">G</div>
+                    <div>
+                        <h2 id="detailCompany">Company Name</h2>
+                        <p id="detailJobTitle">Job Title</p>
+                        <div style="margin-top:8px;" id="detailStatus"></div>
+                    </div>
+                </div>
+
+                <!-- Action buttons -->
+                <div style="display:flex;gap:10px;flex-wrap:wrap;">
+                    <button class="btn-secondary" onclick="openEditModal(currentApp.id)">
+                        <i class="bi bi-pencil"></i> Edit
+                    </button>
+                    <button class="btn-danger" id="detailDeleteBtn">
+                        <i class="bi bi-trash"></i> Delete
+                    </button>
+                    <a id="detailJobLink" href="#" target="_blank" class="btn-secondary">
+                        <i class="bi bi-box-arrow-up-right"></i> Job Posting
+                    </a>
+                </div>
+            </div>
+
+            <!-- ── META DETAIL GRID ─────────────────────────────────── -->
+            <div class="detail-grid">
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Application Info</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="detail-field">
+                            <div class="field-label">Location</div>
+                            <div class="field-value" id="detailLocation">—</div>
+                        </div>
+                        <div class="detail-field">
+                            <div class="field-label">Job Type</div>
+                            <div class="field-value" id="detailJobType">—</div>
+                        </div>
+                        <div class="detail-field">
+                            <div class="field-label">Salary / Stipend</div>
+                            <div class="field-value" id="detailSalary">—</div>
+                        </div>
+                        <div class="detail-field">
+                            <div class="field-label">Applied On</div>
+                            <div class="field-value" id="detailDate">—</div>
+                        </div>
+                        <div class="detail-field">
+                            <div class="field-label">Interview Date</div>
+                            <div class="field-value" id="detailInterview">—</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2>Change Status</h2>
+                    </div>
+                    <div class="card-body">
+                        <p style="font-size:13.5px;color:var(--color-muted);margin-bottom:14px;">
+                            Update the current status of this application.
+                        </p>
+                        <!-- Status buttons — clicking any saves to localStorage -->
+                        <div style="display:flex;flex-direction:column;gap:8px;" id="statusButtons">
+                            <!-- Rendered by JS -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── NOTES CARD ───────────────────────────────────────── -->
+            <div class="card">
+                <div class="card-header">
+                    <h2><i class="bi bi-journal-text" style="color:var(--color-primary);margin-right:6px;"></i> Notes
+                    </h2>
+                    <button class="btn-primary" style="padding:7px 14px;font-size:13px;" id="saveNotesBtn">
+                        <i class="bi bi-floppy"></i> Save Notes
+                    </button>
+                </div>
+                <div class="card-body">
+                    <textarea id="detailNotes" class="form-control" style="min-height:160px;"
+                        placeholder="Add notes, round details, referral info, links…"></textarea>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Edit modal (reused from applications.js) -->
+    <div class="modal-overlay" id="appModal">
+        <div class="modal-box">
+            <div class="modal-header">
+                <h3 id="modalTitle">Edit Application</h3>
+                <button class="modal-close" onclick="closeModal('appModal')">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form id="appForm" novalidate>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fieldCompany">Company *</label>
+                            <input type="text" id="fieldCompany" class="form-control" required />
+                        </div>
+                        <div class="form-group">
+                            <label for="fieldTitle">Job Title *</label>
+                            <input type="text" id="fieldTitle" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fieldLocation">Location</label>
+                            <input type="text" id="fieldLocation" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="fieldJobType">Job Type</label>
+                            <select id="fieldJobType" class="form-control">
+                                <option>Full-time</option>
+                                <option>Internship</option>
+                                <option>Part-time</option>
+                                <option>Contract</option>
+                                <option>Remote</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fieldSalary">Salary / Stipend</label>
+                            <input type="text" id="fieldSalary" class="form-control" />
+                        </div>
+                        <div class="form-group">
+                            <label for="fieldDate">Application Date *</label>
+                            <input type="date" id="fieldDate" class="form-control" required />
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="fieldStatus">Status</label>
+                            <select id="fieldStatus" class="form-control">
+                                <option>Applied</option>
+                                <option>Assessment</option>
+                                <option>Interview</option>
+                                <option>Offer</option>
+                                <option>Rejected</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="fieldInterview">Interview Date</label>
+                            <input type="date" id="fieldInterview" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="fieldUrl">Job URL</label>
+                        <input type="url" id="fieldUrl" class="form-control" />
+                    </div>
+                    <div class="form-group">
+                        <label for="fieldNotes">Notes</label>
+                        <textarea id="fieldNotes" class="form-control"></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn-secondary" onclick="closeModal('appModal')">Cancel</button>
+                <button class="btn-primary" onclick="document.getElementById('appForm').requestSubmit()">
+                    <i class="bi bi-floppy"></i> Save Changes
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/applications.js"></script>
+    <script>
+        /* ── DETAIL PAGE LOGIC ──────────────────────────────────────
+           This script reads the ?id= from the URL, fetches the app
+           from the API, and renders the page.
+        ─────────────────────────────────────────────────────────── */
+
+        // Read ?id=abc123xyz
+        const params = new URLSearchParams(window.location.search);
+        const appId = params.get('id'); // ObjectId is a string
+
+        let currentApp = null;
+
+        async function initDetail() {
+            try {
+                const res = await apiFetch(`/applications/${appId}`);
+                if (res && res.data) {
+                    currentApp = res.data;
+                    renderDetail();
+                } else {
+                    showNotFound();
+                }
+            } catch (err) {
+                showNotFound();
+            }
+        }
+
+        function showNotFound() {
+            document.querySelector('.page-content').innerHTML = `
+                <div class="empty-state">
+                    <i class="bi bi-exclamation-circle"></i>
+                    <h3>Application not found</h3>
+                    <p>This application may have been deleted.</p>
+                    <a class="btn-primary" href="applications.html">← Back to Applications</a>
+                </div>`;
+        }
+
+        initDetail();
+
+        function renderDetail() {
+            const a = currentApp;
+
+            // Breadcrumb
+            document.getElementById('breadcrumbTitle').textContent = a.company + ' — ' + a.jobTitle;
+            document.title = `${a.company} — SmartHire`;
+
+            // Header
+            document.getElementById('detailLogo').textContent = a.company[0];
+            document.getElementById('detailCompany').textContent = a.company;
+            document.getElementById('detailJobTitle').textContent = a.jobTitle;
+            document.getElementById('detailStatus').innerHTML = getStatusBadge(a.status);
+
+            // Fields
+            document.getElementById('detailLocation').textContent = a.location || '—';
+            document.getElementById('detailJobType').textContent = a.jobType || '—';
+            document.getElementById('detailSalary').textContent = a.salary || '—';
+            document.getElementById('detailDate').textContent = formatDate(a.applicationDate);
+            document.getElementById('detailInterview').textContent = a.interviewDate ? formatDate(a.interviewDate) : '—';
+            document.getElementById('detailNotes').value = a.notes || '';
+
+            // Job link
+            const linkEl = document.getElementById('detailJobLink');
+            if (a.jobUrl) {
+                linkEl.href = a.jobUrl;
+            } else {
+                linkEl.style.display = 'none';
+            }
+
+            // Status buttons
+            const statuses = ['Applied', 'Assessment', 'Interview', 'Offer', 'Rejected'];
+            const btnColors = {
+                Applied: '#3b82f6', Assessment: '#f59e0b', Interview: '#8b5cf6',
+                Offer: '#10b981', Rejected: '#ef4444',
+            };
+
+            document.getElementById('statusButtons').innerHTML = statuses.map(s => `
+      <button
+        onclick="changeStatus('${s}')"
+        style="text-align:left;display:flex;align-items:center;gap:10px;padding:10px 14px;
+               border-radius:8px;border:2px solid ${a.status === s ? btnColors[s] : 'var(--color-border)'};
+               background:${a.status === s ? btnColors[s] + '15' : 'transparent'};
+               color:${a.status === s ? btnColors[s] : 'var(--color-text)'};
+               font-weight:${a.status === s ? 600 : 400};font-size:14px;cursor:pointer;
+               font-family:Inter,sans-serif;transition:all 0.2s;"
+        id="statusBtn-${s}"
+      >
+        ${a.status === s ? '<i class="bi bi-check-circle-fill"></i>' : '<i class="bi bi-circle"></i>'}
+        ${s}
+      </button>
+    `).join('');
+
+            // Delete button
+            document.getElementById('detailDeleteBtn').addEventListener('click', () => {
+                showConfirm(
+                    'Delete Application',
+                    `Are you sure you want to delete <strong>${currentApp.company}</strong>? This cannot be undone.`,
+                    async () => {
+                        try {
+                            await apiFetch(`/applications/${appId}`, { method: 'DELETE' });
+                            showToast('Application deleted.', 'error');
+                            setTimeout(() => window.location.href = 'applications.html', 800);
+                        } catch (err) {
+                            // error is toasted
+                        }
+                    }
+                );
+            });
+
+            // Save notes button
+            document.getElementById('saveNotesBtn').addEventListener('click', async () => {
+                const newNotes = document.getElementById('detailNotes').value;
+                const btn = document.getElementById('saveNotesBtn');
+                btn.disabled = true;
+                btn.innerHTML = 'Saving...';
+                try {
+                    const res = await apiFetch(`/applications/${appId}`, {
+                        method: 'PUT',
+                        body: JSON.stringify({ notes: newNotes })
+                    });
+                    if (res) {
+                        currentApp = res.data;
+                        showToast('Notes saved!', 'success');
+                    }
+                } catch (err) { }
+                btn.disabled = false;
+                btn.innerHTML = '<i class="bi bi-floppy"></i> Save Notes';
+            });
+        }
+
+        // Change status and re-render the buttons
+        async function changeStatus(newStatus) {
+            try {
+                const res = await apiFetch(`/applications/${appId}`, {
+                    method: 'PUT',
+                    body: JSON.stringify({ status: newStatus })
+                });
+                if (res) {
+                    currentApp = res.data;
+                    showToast(`Status updated to "${newStatus}"`, 'success');
+                    renderDetail(); // Redraws header + buttons based on new status
+                }
+            } catch (err) { }
+        }
+
+        // After editing via modal, reload from API
+        const appFormEl = document.getElementById('appForm');
+        if (appFormEl) {
+            appFormEl.addEventListener('submit', () => {
+                setTimeout(initDetail, 200); // 200ms delay gives modal closing time to finish and data to persist
+            });
+        }
+    </script>
+</body>
+
+</html>

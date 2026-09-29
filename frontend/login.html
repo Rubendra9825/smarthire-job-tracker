@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login — SmartHire</title>
+    <meta name="description" content="Log in to SmartHire and manage your job applications." />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body class="auth-page">
+
+    <div class="auth-card">
+
+        <!-- Logo -->
+        <div class="auth-logo">
+            <div class="brand-icon"><i class="bi bi-briefcase-fill"></i></div>
+            <span>SmartHire</span>
+        </div>
+
+        <h1 class="auth-title">Welcome back!</h1>
+        <p class="auth-subtitle">Log in to track your applications.</p>
+
+        <!-- Login Form -->
+        <!--
+      In Stage 1: clicking Login goes straight to the dashboard.
+      In Stage 5 (JWT auth): this form will POST to /api/auth/login.
+    -->
+        <form id="loginForm" novalidate>
+
+            <div class="form-group">
+                <label for="loginEmail">Email address</label>
+                <input type="email" id="loginEmail" class="form-control" placeholder="you@example.com"
+                    autocomplete="email" required />
+                <div id="emailError" style="color:#ef4444;font-size:12.5px;margin-top:5px;display:none;">
+                    Please enter a valid email.
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="loginPassword">
+                    Password
+                    <a href="#" style="float:right;font-size:12.5px;color:var(--color-primary);font-weight:400;">
+                        Forgot password?
+                    </a>
+                </label>
+                <!-- Password field with show/hide toggle -->
+                <div style="position:relative;">
+                    <input type="password" id="loginPassword" class="form-control" placeholder="Enter your password"
+                        autocomplete="current-password" required style="padding-right:44px;" />
+                    <button type="button" id="togglePassword" title="Show/hide password" style="position:absolute;right:12px;top:50%;transform:translateY(-50%);
+                   background:none;border:none;cursor:pointer;color:var(--color-muted);font-size:17px;">
+                        <i class="bi bi-eye-slash" id="eyeIcon"></i>
+                    </button>
+                </div>
+                <div id="passwordError" style="color:#ef4444;font-size:12.5px;margin-top:5px;display:none;">
+                    Password is required.
+                </div>
+            </div>
+
+            <!-- Remember me -->
+            <div style="display:flex;align-items:center;gap:8px;margin-bottom:20px;">
+                <input type="checkbox" id="rememberMe"
+                    style="width:15px;height:15px;accent-color:var(--color-primary);" />
+                <label for="rememberMe" style="font-size:13.5px;color:var(--color-muted);cursor:pointer;">
+                    Remember me for 30 days
+                </label>
+            </div>
+
+            <button type="submit" class="btn-primary btn-full" id="loginBtn">
+                <i class="bi bi-box-arrow-in-right"></i> Log In
+            </button>
+
+        </form>
+
+        <!-- Divider -->
+        <div style="text-align:center;margin:20px 0;color:var(--color-muted);font-size:13px;position:relative;">
+            <span style="background:#fff;padding:0 12px;position:relative;z-index:1;">or</span>
+            <div style="position:absolute;top:50%;left:0;right:0;height:1px;background:var(--color-border);z-index:0;">
+            </div>
+        </div>
+
+        <!-- Demo Login (Stage 1 convenience) -->
+        <button class="btn-secondary btn-full" onclick="demoLogin()" style="margin-bottom:20px;">
+            <i class="bi bi-lightning-charge"></i> Continue as Demo User
+        </button>
+
+        <p style="text-align:center;font-size:13.5px;color:var(--color-muted);">
+            Don't have an account?
+            <a href="register.html" style="color:var(--color-primary);font-weight:600;">Sign up free</a>
+        </p>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/auth.js"></script>
+
+    <script>
+        // ── PASSWORD SHOW/HIDE ────────────────────────────────────
+        document.getElementById('togglePassword').addEventListener('click', () => {
+            const input = document.getElementById('loginPassword');
+            const icon = document.getElementById('eyeIcon');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.className = 'bi bi-eye';
+            } else {
+                input.type = 'password';
+                icon.className = 'bi bi-eye-slash';
+            }
+        });
+
+        // ── DEMO LOGIN ────────────────────────────────────────────
+        async function demoLogin() {
+            // Logs in with the Demo User created in the seeder script
+            document.getElementById('loginEmail').value = 'test@example.com';
+            document.getElementById('loginPassword').value = 'password123';
+            document.getElementById('loginBtn').click(); // trigger form submit
+        }
+
+        // ── CSS ANIMATION FOR SPINNER ─────────────────────────────
+        const style = document.createElement('style');
+        style.textContent = `@keyframes spin { to { transform: rotate(360deg); } }`;
+        document.head.appendChild(style);
+    </script>
+
+</body>
+
+</html>

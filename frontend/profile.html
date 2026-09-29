@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Profile — SmartHire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon"><i class="bi bi-briefcase-fill"></i></div>
+            <span class="brand-name">SmartHire</span>
+        </div>
+        <div class="sidebar-label">Menu</div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+            <a href="applications.html"><i class="bi bi-card-list"></i> Applications</a>
+            <a href="analytics.html"><i class="bi bi-bar-chart-line"></i> Analytics</a>
+            <a href="resume-matcher.html"><i class="bi bi-robot"></i> Resume Matcher</a>
+        </nav>
+        <div class="sidebar-label">Account</div>
+        <nav class="sidebar-nav">
+            <a href="profile.html"><i class="bi bi-person-circle"></i> Profile</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html"><i class="bi bi-box-arrow-left"></i> Log Out</a>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
+                <span class="topbar-title">Profile</span>
+            </div>
+            <div class="topbar-right">
+                <button class="user-btn">
+                    <div class="user-avatar" id="topbarUserAvatar">AJ</div>
+                    <span id="topbarUserName">Alex Johnson</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="page-content">
+
+            <div class="page-header">
+                <div>
+                    <h1>My Profile</h1>
+                    <p>Manage your personal information and preferences.</p>
+                </div>
+            </div>
+
+            <!--
+      Profile form — saved to localStorage.
+      In Stage 5+ this will call PUT /api/profile.
+    -->
+            <form id="profileForm">
+                <div class="detail-grid">
+
+                    <!-- LEFT: Personal Info -->
+                    <div style="display:flex;flex-direction:column;gap:20px;">
+
+                        <!-- Avatar + basic info -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Personal Information</h2>
+                            </div>
+                            <div class="card-body">
+                                <!-- Avatar display -->
+                                <div style="display:flex;align-items:center;gap:16px;margin-bottom:24px;">
+                                    <div style="width:72px;height:72px;background:var(--color-primary);border-radius:50%;
+                            display:flex;align-items:center;justify-content:center;
+                            font-size:26px;font-weight:700;color:#fff;" id="avatarDisplay">AJ</div>
+                                    <div>
+                                        <div style="font-size:16px;font-weight:600;" id="avatarName">Alex Johnson</div>
+                                        <div style="font-size:13px;color:var(--color-muted);" id="avatarEmail">
+                                            alex@example.com</div>
+                                    </div>
+                                </div>
+
+                                <div class="form-group">
+                                    <label for="profileName">Full Name</label>
+                                    <input type="text" id="profileName" class="form-control"
+                                        placeholder="Your full name" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileEmail">Email</label>
+                                    <input type="email" id="profileEmail" class="form-control"
+                                        placeholder="you@example.com" />
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-group">
+                                        <label for="profilePhone">Phone</label>
+                                        <input type="tel" id="profilePhone" class="form-control"
+                                            placeholder="+91 98765 43210" />
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="profileLocation">Location</label>
+                                        <input type="text" id="profileLocation" class="form-control"
+                                            placeholder="City, State" />
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileBio">Bio / Summary</label>
+                                    <textarea id="profileBio" class="form-control"
+                                        placeholder="Brief professional summary…"></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Social links -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Links</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="profileLinkedIn">
+                                        <i class="bi bi-linkedin" style="color:#0a66c2;"></i> LinkedIn
+                                    </label>
+                                    <input type="url" id="profileLinkedIn" class="form-control"
+                                        placeholder="https://linkedin.com/in/…" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="profileGitHub">
+                                        <i class="bi bi-github"></i> GitHub
+                                    </label>
+                                    <input type="url" id="profileGitHub" class="form-control"
+                                        placeholder="https://github.com/…" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- RIGHT: Skills, Preferences, Resume -->
+                    <div style="display:flex;flex-direction:column;gap:20px;">
+
+                        <!-- Skills -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Skills</h2>
+                            </div>
+                            <div class="card-body">
+                                <p style="font-size:13px;color:var(--color-muted);margin-bottom:12px;">
+                                    Press <kbd
+                                        style="background:#f1f5f9;border:1px solid #e2e8f0;border-radius:4px;padding:2px 6px;font-size:11px;">Enter</kbd>
+                                    to add a skill.
+                                </p>
+                                <!-- Skill chips rendered by profile.js -->
+                                <div class="skills-container" id="skillsContainer"></div>
+                                <input type="text" id="newSkillInput" class="form-control"
+                                    placeholder="Type a skill and press Enter…" style="margin-top:12px;" />
+                            </div>
+                        </div>
+
+                        <!-- Preferences -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Job Preferences</h2>
+                            </div>
+                            <div class="card-body">
+                                <div class="form-group">
+                                    <label for="profilePreferredRoles">Preferred Roles</label>
+                                    <input type="text" id="profilePreferredRoles" class="form-control"
+                                        placeholder="Full Stack Developer, SDE-1, …" />
+                                </div>
+                                <div class="form-group">
+                                    <label for="profilePreferredLocs">Preferred Locations</label>
+                                    <input type="text" id="profilePreferredLocs" class="form-control"
+                                        placeholder="Bangalore, Remote, …" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Resume -->
+                        <div class="card">
+                            <div class="card-header">
+                                <h2>Resume</h2>
+                            </div>
+                            <div class="card-body">
+                                <p style="font-size:13px;color:var(--color-muted);margin-bottom:12px;">
+                                    Paste your resume text here. It will be used by the AI Resume Matcher.
+                                </p>
+                                <textarea id="profileResume" class="form-control" style="min-height:160px;"
+                                    placeholder="Paste your complete resume text here…"></textarea>
+                            </div>
+                        </div>
+
+                        <!-- Save button -->
+                        <button type="submit" class="btn-primary"
+                            style="width:100%;justify-content:center;padding:12px;">
+                            <i class="bi bi-floppy"></i> Save Profile
+                        </button>
+
+                    </div>
+                </div>
+            </form>
+
+        </main>
+    </div>
+
+    <script src="js/main.js"></script>
+    <script src="js/profile.js"></script>
+    <script>
+        // Live-update the avatar display when name/email change
+        document.getElementById('profileName').addEventListener('input', e => {
+            const parts = e.target.value.trim().split(' ');
+            const initials = parts.map(p => p[0]?.toUpperCase() || '').join('').slice(0, 2) || '?';
+            document.getElementById('avatarDisplay').textContent = initials;
+            document.getElementById('avatarName').textContent = e.target.value;
+        });
+        document.getElementById('profileEmail').addEventListener('input', e => {
+            document.getElementById('avatarEmail').textContent = e.target.value;
+        });
+    </script>
+</body>
+
+</html>

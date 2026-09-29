@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Analytics — SmartHire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- SIDEBAR -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon"><i class="bi bi-briefcase-fill"></i></div>
+            <span class="brand-name">SmartHire</span>
+        </div>
+        <div class="sidebar-label">Menu</div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+            <a href="applications.html"><i class="bi bi-card-list"></i> Applications</a>
+            <a href="analytics.html"><i class="bi bi-bar-chart-line"></i> Analytics</a>
+            <a href="resume-matcher.html"><i class="bi bi-robot"></i> Resume Matcher</a>
+        </nav>
+        <div class="sidebar-label">Account</div>
+        <nav class="sidebar-nav">
+            <a href="profile.html"><i class="bi bi-person-circle"></i> Profile</a>
+        </nav>
+        <div class="sidebar-footer">
+            <a href="index.html"><i class="bi bi-box-arrow-left"></i> Log Out</a>
+        </div>
+    </div>
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <div class="main-content">
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle"><i class="bi bi-list"></i></button>
+                <span class="topbar-title">Analytics</span>
+            </div>
+            <div class="topbar-right">
+                <div class="topbar-search">
+                    <i class="bi bi-search search-icon"></i>
+                    <input type="text" placeholder="Search…" />
+                </div>
+                <button class="user-btn">
+                    <div class="user-avatar" id="topbarUserAvatar">AJ</div>
+                    <span id="topbarUserName">Alex Johnson</span>
+                </button>
+            </div>
+        </header>
+
+        <main class="page-content">
+
+            <div class="page-header">
+                <div>
+                    <h1>Analytics</h1>
+                    <p>Visualise and understand your job search progress.</p>
+                </div>
+            </div>
+
+            <!-- ── SUMMARY STAT PILLS ─────────────────────────────── -->
+            <div class="stats-grid" style="margin-bottom:24px;">
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="bi bi-send"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="analytics-total">—</div>
+                        <div class="stat-label">Total Applied</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon violet"><i class="bi bi-person-video2"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="analytics-interviews">—</div>
+                        <div class="stat-label">Interviews Got</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="bi bi-trophy"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="analytics-offers">—</div>
+                        <div class="stat-label">Offers Received</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red"><i class="bi bi-x-circle"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="analytics-rejected">—</div>
+                        <div class="stat-label">Rejections</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── ROW 1: Status Doughnut + Monthly Bar ─────────────── -->
+            <div class="analytics-grid" style="margin-bottom:20px;">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="bi bi-pie-chart" style="color:var(--color-primary);margin-right:6px;"></i>
+                            Applications by Status</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container" style="height:280px;">
+                            <canvas id="analyticsStatusChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="bi bi-calendar3" style="color:var(--color-primary);margin-right:6px;"></i>
+                            Applications by Month</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container" style="height:280px;">
+                            <canvas id="analyticsMonthChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <!-- ── ROW 2: Rates Bar + Trend Line ──────────────────────── -->
+            <div class="analytics-grid">
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="bi bi-graph-up-arrow" style="color:var(--color-primary);margin-right:6px;"></i>
+                            Conversion Rates</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container" style="height:280px;">
+                            <canvas id="analyticsRatesChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="bi bi-activity" style="color:var(--color-primary);margin-right:6px;"></i>
+                            Application Trend</h2>
+                    </div>
+                    <div class="card-body">
+                        <div class="chart-container" style="height:280px;">
+                            <canvas id="analyticsTrendChart"></canvas>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <script src="js/main.js"></script>
+    <script src="js/analytics.js"></script>
+</body>
+
+</html>

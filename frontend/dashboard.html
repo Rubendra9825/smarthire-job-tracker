@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dashboard — SmartHire</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+
+    <!-- ── SIDEBAR ───────────────────────────────────────────── -->
+    <div class="sidebar" id="sidebar">
+        <div class="sidebar-brand">
+            <div class="brand-icon"><i class="bi bi-briefcase-fill"></i></div>
+            <span class="brand-name">SmartHire</span>
+        </div>
+
+        <div class="sidebar-label">Menu</div>
+        <nav class="sidebar-nav">
+            <a href="dashboard.html"><i class="bi bi-grid-1x2"></i> Dashboard</a>
+            <a href="applications.html"><i class="bi bi-card-list"></i> Applications</a>
+            <a href="analytics.html"><i class="bi bi-bar-chart-line"></i> Analytics</a>
+            <a href="resume-matcher.html"><i class="bi bi-robot"></i> Resume Matcher</a>
+        </nav>
+
+        <div class="sidebar-label">Account</div>
+        <nav class="sidebar-nav">
+            <a href="profile.html"><i class="bi bi-person-circle"></i> Profile</a>
+        </nav>
+
+        <div class="sidebar-footer">
+            <a href="index.html"><i class="bi bi-box-arrow-left"></i> Log Out</a>
+        </div>
+    </div>
+
+    <!-- Mobile sidebar overlay -->
+    <div class="sidebar-overlay" id="sidebarOverlay"></div>
+
+    <!-- ── MAIN CONTENT ──────────────────────────────────────── -->
+    <div class="main-content">
+
+        <!-- Top Navbar -->
+        <header class="topbar">
+            <div class="topbar-left">
+                <button class="sidebar-toggle" id="sidebarToggle" title="Toggle menu">
+                    <i class="bi bi-list"></i>
+                </button>
+                <span class="topbar-title">Dashboard</span>
+            </div>
+            <div class="topbar-right">
+                <div class="topbar-search">
+                    <i class="bi bi-search search-icon"></i>
+                    <input type="text" placeholder="Search applications…" />
+                </div>
+                <button class="user-btn">
+                    <div class="user-avatar" id="topbarUserAvatar">AJ</div>
+                    <span id="topbarUserName">Alex Johnson</span>
+                    <i class="bi bi-chevron-down" style="font-size:12px;"></i>
+                </button>
+            </div>
+        </header>
+
+        <!-- Page Content -->
+        <main class="page-content">
+
+            <!-- Page header -->
+            <div class="page-header">
+                <div>
+                    <h1>Good morning, <span id="topbarGreetName">Alex</span> 👋</h1>
+                    <p>Here's what's happening with your job search today.</p>
+                </div>
+                <a href="applications.html" class="btn-primary">
+                    <i class="bi bi-plus-lg"></i> Add Application
+                </a>
+            </div>
+
+            <!-- ── STATS CARDS ─────────────────────────────────────── -->
+            <!--
+      Each card has an id that dashboard.js looks for and fills in.
+      The structure is:  icon + number + label.
+    -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="bi bi-send"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="stat-total">—</div>
+                        <div class="stat-label">Total Applications</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon violet"><i class="bi bi-person-video2"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="stat-interviews">—</div>
+                        <div class="stat-label">Interviews</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="bi bi-trophy"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="stat-offers">—</div>
+                        <div class="stat-label">Offers</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon red"><i class="bi bi-x-circle"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="stat-rejections">—</div>
+                        <div class="stat-label">Rejections</div>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon indigo"><i class="bi bi-graph-up-arrow"></i></div>
+                    <div class="stat-info">
+                        <div class="stat-value" id="stat-rate">—</div>
+                        <div class="stat-label">Response Rate</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- ── BOTTOM GRID: Recent + Upcoming / Chart ──────────── -->
+            <div class="dashboard-grid">
+
+                <!-- LEFT: Recent Applications Table -->
+                <div class="card">
+                    <div class="card-header">
+                        <h2><i class="bi bi-clock-history" style="color:var(--color-primary);margin-right:6px;"></i>
+                            Recent Applications</h2>
+                        <a href="applications.html" style="font-size:13px;color:var(--color-primary);font-weight:500;">
+                            View all <i class="bi bi-arrow-right"></i>
+                        </a>
+                    </div>
+                    <div class="card-body" style="padding:0;">
+                        <table class="sh-table">
+                            <thead>
+                                <tr>
+                                    <th>Company</th>
+                                    <th>Type</th>
+                                    <th>Status</th>
+                                    <th>Applied</th>
+                                </tr>
+                            </thead>
+                            <tbody id="recentAppsBody">
+                                <!-- Filled by dashboard.js -->
+                                <tr>
+                                    <td colspan="4" style="text-align:center;padding:24px;color:var(--color-muted);">
+                                        Loading…</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- RIGHT: Status Chart + Upcoming Interviews -->
+                <div style="display:flex;flex-direction:column;gap:20px;">
+
+                    <!-- Status Doughnut Chart -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="bi bi-pie-chart" style="color:var(--color-primary);margin-right:6px;"></i> By
+                                Status</h2>
+                        </div>
+                        <div class="card-body">
+                            <div style="max-height:240px;display:flex;align-items:center;justify-content:center;">
+                                <canvas id="statusChart"></canvas>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Upcoming Interviews -->
+                    <div class="card">
+                        <div class="card-header">
+                            <h2><i class="bi bi-calendar-event"
+                                    style="color:var(--color-primary);margin-right:6px;"></i> Upcoming Interviews</h2>
+                            <a href="analytics.html" style="font-size:13px;color:var(--color-primary);font-weight:500;">
+                                Analytics <i class="bi bi-arrow-right"></i>
+                            </a>
+                        </div>
+                        <div class="card-body" style="padding:12px 24px;">
+                            <div id="upcomingInterviews">
+                                <!-- Filled by dashboard.js -->
+                                <div style="text-align:center;padding:20px;color:var(--color-muted);font-size:14px;">
+                                    Loading…</div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Chart.js CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+    <!-- Our JS files -->
+    <script src="js/main.js"></script>
+    <script src="js/dashboard.js"></script>
+    <script>
+        // Personalise the greeting with the first word of the user's name
+        const user = JSON.parse(localStorage.getItem('sh_user') || '{}');
+        const firstName = (user.name || 'there').split(' ')[0];
+        const nameEl = document.getElementById('topbarGreetName');
+        if (nameEl) nameEl.textContent = firstName;
+    </script>
+</body>
+
+</html>
